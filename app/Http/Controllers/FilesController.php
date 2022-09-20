@@ -19,7 +19,7 @@ class FilesController extends Controller
 
             $access_path = "/{$data['file_path']}/$fileNameWithExtension" ;
 
-            Storage::disk('public')->put($data['file_path'],$data['file']);
+            $request->file('file')->move(public_path($access_path));
 
             return response()->json(success($access_path));
     }

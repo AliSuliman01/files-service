@@ -17,10 +17,9 @@ class FilesController extends Controller
             else
                 $fileNameWithExtension = $data['file']->getClientOriginalName();
 
-            $access_path = "/storage/{$data['file_path']}/$fileNameWithExtension" ;
-            $storage_file_path = "/public/{$data['file_path']}" ;
+            $access_path = "/{$data['file_path']}/$fileNameWithExtension" ;
 
-            $data['file']->storeAs($storage_file_path,$fileNameWithExtension);
+            Storage::disk('public')->writeStream($data['file_path'],$data['file']);
 
             return response()->json(success($access_path));
     }

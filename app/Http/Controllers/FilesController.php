@@ -22,6 +22,6 @@ class FilesController extends Controller
 
             $data['file']->storeAs($storage_file_path,$fileNameWithExtension);
 
-            return response()->json($access_path);
+            return response()->json(success($access_path));
     }
 }
